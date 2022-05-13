@@ -19,6 +19,13 @@ namespace MyChess.Model
         public void Start()
         {
             this.PlaceFigures();
+            var temp = this.Board.GetPossibleMoves(new Point(0, 1)); // 0, 2
+            this.Board.PlacePiece(new Knight(Color.black), new Point(1, 2));
+            this.Board.PlacePiece(new Knight(Color.black), new Point(2, 2));
+            var temp2 = this.Board.GetPossibleMoves(new Point(1, 1)); // 2, 2
+            this.Board.PlacePiece(new Knight(Color.white), new Point(7, 2));
+            this.Board.PlacePiece(new Knight(Color.white), new Point(5, 2));
+            var temp3 = this.Board.GetPossibleMoves(new Point(6, 1)); // 6, 2
         }
 
         private void PlaceFigures()

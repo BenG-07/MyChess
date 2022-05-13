@@ -58,6 +58,16 @@ namespace MyChess.Model
             return board[point.X, point.Y] != null;
         }
 
+        public bool IsOccupied(Point point, Color color)
+        {
+            if (!this.IsInBounds(point))
+            {
+                throw new Exception();
+            }
+
+            return board[point.X, point.Y] != null && board[point.X, point.Y].Color == color;
+        }
+
         // TODO
         public bool IsProtectingKing(Point point)
         {

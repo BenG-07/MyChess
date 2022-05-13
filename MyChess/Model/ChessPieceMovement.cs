@@ -17,17 +17,26 @@ namespace MyChess.Model
             {
                 List<Point> possibleMoves = new List<Point>();
 
-                // Go forward
+                // Go forward - cant attack
                 Point target = point + new Point(0, 1);
-                this.AddMoveIfPossible(board, target, possibleMoves);
+                if (board.IsInBounds(target) && !board.IsOccupied(target))
+                {
+                    possibleMoves.Add(Point.CopyOf(target));
+                }
 
-                // Go diagonal left
+                // Go diagonal left - can only move if enemy is there
                 target = point + new Point(-1, 1);
-                this.AddMoveIfPossible(board, target, possibleMoves);
+                if (board.IsInBounds(target) && board.IsOccupied(target, pawn.Color.Invert()))
+                {
+                    possibleMoves.Add(Point.CopyOf(target));
+                }
 
-                // Go diagonal right
+                // Go diagonal right - can only move if enemy is there
                 target = point + new Point(1, 1);
-                this.AddMoveIfPossible(board, target, possibleMoves);
+                if (board.IsInBounds(target) && board.IsOccupied(target, pawn.Color.Invert()))
+                {
+                    possibleMoves.Add(Point.CopyOf(target));
+                }
 
                 return possibleMoves;
             };
@@ -58,9 +67,9 @@ namespace MyChess.Model
             throw new NotImplementedException();
         }
 
-        private bool AddMoveIfPossible(ChessBoard board, Point target, List<Point> points)
+        private bool AddMoveIfPossible(ChessBoard board, Point target, Color color, List<Point> points)
         {
-            if (board.IsInBounds(target) && !board.IsOccupied(target))
+            if (board.IsInBounds(target) && !board.IsOccupied(target, color))
             {
                 points.Add(Point.CopyOf(target));
                 return true;

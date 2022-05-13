@@ -9,6 +9,6 @@ namespace MyChess.Model
 {
     public static class Extensions
     {
-        public static Color Invert(Color color) => color == Color.white ? Color.black : Color.white;
+        public static Color Invert(this Color color) => color == Color.white ? Color.black : Color.white;
     }
 }
