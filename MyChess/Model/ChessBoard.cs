@@ -82,5 +82,16 @@ namespace MyChess.Model
 
             return piece;
         }
+
+        public bool PlacePiece(ChessPiece piece, Point point)
+        {
+            if (this.IsOccupied(point))
+            {
+                return false;
+            }
+
+            this.board[point.X, point.Y] = piece;
+            return true;
+        }
     }
 }

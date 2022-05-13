@@ -23,6 +23,7 @@ namespace MyChess
         public MainWindow()
         {
             InitializeComponent();
+            new Model.ChessGame().Start();
         }
     }
 }
