@@ -7,8 +7,8 @@ using MyChess.Model.ChessPieces;
 
 namespace MyChess.Model
 {
-    public interface IVisitable
+    public static class Extensions
     {
-        void Accept(IVisitor visitor);
+        public static Color Invert(Color color) => color == Color.white ? Color.black : Color.white;
     }
 }

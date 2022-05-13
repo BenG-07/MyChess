@@ -69,17 +69,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Bishop.cs" />
+    <Compile Include="Model\ChessGame.cs" />
+    <Compile Include="Model\ChessPieceMovement.cs" />
+    <Compile Include="Model\ChessPieces\Bishop.cs" />
     <Compile Include="Model\ChessBoard.cs" />
-    <Compile Include="Model\ChessPiece.cs" />
+    <Compile Include="Model\ChessPieces\ChessPiece.cs" />
+    <Compile Include="Model\ChessPieces\Color.cs" />
+    <Compile Include="Model\Extensions.cs" />
     <Compile Include="Model\IVisitable.cs" />
     <Compile Include="Model\IVisitor.cs" />
-    <Compile Include="Model\King.cs" />
-    <Compile Include="Model\Knight.cs" />
-    <Compile Include="Model\Pawn.cs" />
+    <Compile Include="Model\ChessPieces\King.cs" />
+    <Compile Include="Model\ChessPieces\Knight.cs" />
+    <Compile Include="Model\ChessPieces\Pawn.cs" />
     <Compile Include="Model\Point.cs" />
-    <Compile Include="Model\Queen.cs" />
-    <Compile Include="Model\Rook.cs" />
+    <Compile Include="Model\ChessPieces\Queen.cs" />
+    <Compile Include="Model\ChessPieces\Rook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -105,6 +109,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+    <Folder Include="View\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
