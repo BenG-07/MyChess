@@ -9,7 +9,9 @@ namespace MyChess.Model
 {
     class ChessGame
     {
-        public ChessBoard Board { get; set; }
+        public ChessBoard Board { get; }
+
+        public Color CurrentPlayer { get; set; }
 
         public ChessGame()
         {
@@ -70,13 +72,14 @@ namespace MyChess.Model
                                                                       // 3,4,5 ; 5
                                                                       // 2,4,6 ; 6
 
-            var a = this.Board.IsInCheck(Color.white);
-            var b = this.Board.IsInCheck(Color.black);
+            var a = this.Board.IsInCheck(Color.white); // false
+            var b = this.Board.IsInCheck(Color.black); // false
 
-            var removed = this.Board.RemovePiece(new Point(4, 6));
-            var c = this.Board.IsInCheck(Color.black);
+            var removed = this.Board.RemovePiece(new Point(4, 6)); // Pawn - black
+            var c = this.Board.IsInCheck(Color.black); // true
             this.Board.PlacePiece(new Bishop(Color.black), new Point(4, 6));
-            var d = this.Board.IsInCheck(Color.black);
+            var d = this.Board.IsInCheck(Color.black); // false
+            var temp5 = this.Board.GetPossibleMoves(new Point(4,6)); // null
         }
     }
 }

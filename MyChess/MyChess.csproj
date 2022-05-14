@@ -55,7 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\ChessBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChessGraveYard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,7 +71,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\ChessBoard.xaml.cs">
+      <DependentUpon>ChessBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChessGraveYard.xaml.cs">
+      <DependentUpon>ChessGraveYard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -115,7 +129,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
+    <Folder Include="View\Images\ChessPieces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\Background.png" />
+    <Resource Include="View\Images\MainMenu.png" />
+    <Resource Include="View\Images\title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\Buttons\CreditsButton.png" />
+    <Resource Include="View\Images\Buttons\LoadButton.png" />
+    <Resource Include="View\Images\Buttons\OptionsButton.png" />
+    <Resource Include="View\Images\Buttons\SaveButton.png" />
+    <Resource Include="View\Images\Buttons\StartButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\Tiles\BlackTile.png" />
+    <Resource Include="View\Images\Tiles\WhiteTile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
