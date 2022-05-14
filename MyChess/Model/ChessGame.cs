@@ -13,9 +13,10 @@ namespace MyChess.Model
 
         public Color CurrentPlayer { get; set; }
 
-        public ChessGame()
+        public ChessGame(int boardWidth, int boardHeight)
         {
-            this.Board = new ChessBoard(8, 8);
+            this.Board = new ChessBoard(boardWidth, boardHeight);
+            this.CurrentPlayer = Color.white;
         }
 
         public void Start()

@@ -71,6 +71,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\TileColorConverter.cs" />
+    <Compile Include="ViewModel\TilePositionConverter.cs" />
+    <Compile Include="ViewModel\ChessGrid.cs" />
+    <Compile Include="ViewModel\Tile.cs" />
     <Compile Include="View\ChessBoard.xaml.cs">
       <DependentUpon>ChessBoard.xaml</DependentUpon>
     </Compile>
@@ -128,7 +132,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
     <Folder Include="View\Images\ChessPieces\" />
   </ItemGroup>
   <ItemGroup>

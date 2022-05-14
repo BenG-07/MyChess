@@ -6,11 +6,6 @@ namespace MyChess.Model.ChessPieceMovers
 {
     public abstract class ChessPieceMovementPattern : IVisitor<Func<ChessBoard, Point, List<Point>>>
     {
-        public ChessPieceMovementPattern()
-        {
-
-        }
-
         public Func<ChessBoard, Point, List<Point>> Visit(Pawn pawn)
         {
             return (board, point) =>
