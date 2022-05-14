@@ -1,7 +1,7 @@
 ﻿using MyChess.Model.ChessPieces;
 using System.Collections.Generic;
 
-namespace MyChess.Model.PieceFinders
+namespace MyChess.Model.ChessPieceFinders
 {
     public abstract class PieceFinder : IVisitor<bool>
     {

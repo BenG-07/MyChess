@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace MyChess.Model
+namespace MyChess.Model.ChessPieceMovers
 {
-    public class ChessPieceMovement : IVisitor<Func<ChessBoard, Point, List<Point>>>
+    public abstract class ChessPieceMovementPattern : IVisitor<Func<ChessBoard, Point, List<Point>>>
     {
-        public ChessPieceMovement()
+        public ChessPieceMovementPattern()
         {
 
         }
@@ -44,28 +44,28 @@ namespace MyChess.Model
                 do
                 {
                     target += new Point(1, 0);
-                } while (this.IsNextMovePossible(board, target, rook.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 // Left
                 target = point;
                 do
                 {
                     target += new Point(-1, 0);
-                } while (this.IsNextMovePossible(board, target, rook.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 // UP
                 target = point;
                 do
                 {
                     target += new Point(0, 1);
-                } while (this.IsNextMovePossible(board, target, rook.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 // Down
                 target = point;
                 do
                 {
                     target += new Point(0, -1);
-                } while (this.IsNextMovePossible(board, target, rook.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 return possibleMoves;
             };
@@ -82,28 +82,28 @@ namespace MyChess.Model
                 do
                 {
                     target += new Point(1, 1);
-                } while (this.IsNextMovePossible(board, target, bishop.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 // Left down
                 target = point;
                 do
                 {
                     target += new Point(-1, -1);
-                } while (this.IsNextMovePossible(board, target, bishop.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 // UP left
                 target = point;
                 do
                 {
                     target += new Point(-1, 1);
-                } while (this.IsNextMovePossible(board, target, bishop.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 // Down right
                 target = point;
                 do
                 {
                     target += new Point(1, -1);
-                } while (this.IsNextMovePossible(board, target, bishop.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 return possibleMoves;
             };
@@ -116,21 +116,21 @@ namespace MyChess.Model
                 List<Point> possibleMoves = new List<Point>();
 
                 Point target = point + new Point(1, 2);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
                 target = point + new Point(2, 1);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
                 target = point + new Point(2, -1);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
                 target = point + new Point(1, -2);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
                 target = point + new Point(-1, 2);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
                 target = point + new Point(-2, 1);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
                 target = point + new Point(-2, -1);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
                 target = point + new Point(-1, -2);
-                this.IsNextMovePossible(board, target, knight.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, knight.Color, possibleMoves);
 
                 return possibleMoves;
             };
@@ -147,56 +147,56 @@ namespace MyChess.Model
                 do
                 {
                     target += new Point(1, 0);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Left
                 target = point;
                 do
                 {
                     target += new Point(-1, 0);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // UP
                 target = point;
                 do
                 {
                     target += new Point(0, 1);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Down
                 target = point;
                 do
                 {
                     target += new Point(0, -1);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Right up
                 target = point;
                 do
                 {
                     target += new Point(1, 1);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Left down
                 target = point;
                 do
                 {
                     target += new Point(-1, -1);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // UP left
                 target = point;
                 do
                 {
                     target += new Point(-1, 1);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Down right
                 target = point;
                 do
                 {
                     target += new Point(1, -1);
-                } while (this.IsNextMovePossible(board, target, queen.Color, possibleMoves));
+                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 return possibleMoves;
             };
@@ -210,67 +210,68 @@ namespace MyChess.Model
 
                 // Right
                 Point target = point + new Point(0, 1);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 // Left
                 target = point + new Point(1, 1);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 // UP
                 target = point + new Point(1, 0);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 // Down
                 target = point + new Point(1, -1);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 // Right up
                 target = point + new Point(1, 0);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 // Left down
                 target = point + new Point(-1, -1);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 // UP left
                 target = point + new Point(-1, 0);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 // Down right
                 target = point + new Point(-1, 1);
-                this.IsNextMovePossible(board, target, king.Color, possibleMoves);
+                this.IsNextMovePossible(board, point, target, king.Color, possibleMoves);
 
                 return possibleMoves;
             };
         }
 
-        private bool AddMoveIfIsNonAttack(ChessBoard board, Point target, Color color, List<Point> points)
+        protected virtual bool AddMoveIfIsNonAttack(ChessBoard board, Point target, Color color, List<Point> points)
         {
             if (board.IsInBounds(target) && !board.IsOccupied(target))
             {
-                points.Add(Point.CopyOf(target));
+                points.Add(target);
                 return true;
             }
 
             return false;
         }
 
-        private bool AddMoveIfIsAttack(ChessBoard board, Point target, Color color, List<Point> points)
+        protected virtual bool AddMoveIfIsAttack(ChessBoard board, Point target, Color color, List<Point> points)
         {
             if (board.IsInBounds(target) && board.IsOccupied(target, color.Invert()))
             {
-                points.Add(Point.CopyOf(target));
+                points.Add(target);
                 return true;
             }
 
             return false;
         }
 
-        private bool IsNextMovePossible(ChessBoard board, Point target, Color color, List<Point> points)
+        protected virtual bool IsNextMovePossible(ChessBoard board, Point start, Point target, Color color, List<Point> points)
         {
             if (board.IsInBounds(target) && !board.IsOccupied(target, color))
             {
-                points.Add(Point.CopyOf(target));
+                points.Add(target);
+
                 return !board.IsOccupied(target, color.Invert());
             }
 

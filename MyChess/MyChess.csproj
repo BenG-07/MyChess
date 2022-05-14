@@ -69,20 +69,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\PieceFinders\KingFinder.cs" />
+    <Compile Include="Model\ChessPieceFinders\KingFinder.cs" />
     <Compile Include="Model\ChessGame.cs" />
-    <Compile Include="Model\ChessPieceMovement.cs" />
+    <Compile Include="Model\ChessPieceMovers\ChessPieceMover.cs" />
+    <Compile Include="Model\ChessPieceMovers\ChessPieceMovementPattern.cs" />
     <Compile Include="Model\ChessPieces\Bishop.cs" />
     <Compile Include="Model\ChessBoard.cs" />
     <Compile Include="Model\ChessPieces\ChessPiece.cs" />
     <Compile Include="Model\ChessPieces\Color.cs" />
+    <Compile Include="Model\ChessPieceMovers\ChessPieceThreatener.cs" />
     <Compile Include="Model\Extensions.cs" />
     <Compile Include="Model\IVisitable.cs" />
     <Compile Include="Model\IVisitor.cs" />
     <Compile Include="Model\ChessPieces\King.cs" />
     <Compile Include="Model\ChessPieces\Knight.cs" />
     <Compile Include="Model\ChessPieces\Pawn.cs" />
-    <Compile Include="Model\PieceFinders\PieceFinder.cs" />
+    <Compile Include="Model\ChessPieceFinders\PieceFinder.cs" />
     <Compile Include="Model\Point.cs" />
     <Compile Include="Model\ChessPieces\Queen.cs" />
     <Compile Include="Model\ChessPieces\Rook.cs" />

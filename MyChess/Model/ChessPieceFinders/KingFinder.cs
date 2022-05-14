@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MyChess.Model.PieceFinders
+namespace MyChess.Model.ChessPieceFinders
 {
     public class KingFinder : PieceFinder
     {

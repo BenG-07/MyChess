@@ -16,6 +16,7 @@ namespace MyChess.Model
         void Visit(Queen queen);
         void Visit(King king);
     }
+
     public interface IVisitor<T>
     {
         T Visit(Pawn pawn);
