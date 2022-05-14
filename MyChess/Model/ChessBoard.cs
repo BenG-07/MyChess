@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using MyChess.Model.ChessPieces;
+using MyChess.Model.PieceFinders;
 
 namespace MyChess.Model
 {
@@ -68,14 +69,6 @@ namespace MyChess.Model
             return board[point.X, point.Y] != null && board[point.X, point.Y].Color == color;
         }
 
-        // TODO
-        public bool IsProtectingKing(Point point)
-        {
-            ChessPiece piece = this.GetPiece(point);
-
-            return false;
-        }
-
         private ChessPiece GetPiece(Point point)
         {
             if (!this.IsInBounds(point))
@@ -102,6 +95,33 @@ namespace MyChess.Model
 
             this.board[point.X, point.Y] = piece;
             return true;
+        }
+
+        public bool IsInCheck(Color color)
+        {
+            Point kingPosition = new KingFinder().GetPiecePosition(this.GetPiecesAndPosition(color));
+
+            return true;
+        }
+
+        public Dictionary<Point, ChessPiece> GetPiecesAndPosition(Color color)
+        {
+            Dictionary<Point, ChessPiece> pieces = new Dictionary<Point, ChessPiece>();
+            for (int x = 0; x < this.BoardWidth; x++)
+            {
+                for (int y = 0; y < this.BoardHeight; y++)
+                {
+                    ChessPiece piece = this.board[x, y];
+                    if (piece == null || piece.Color != color)
+                    {
+                        continue;
+                    }
+
+                    pieces.Add(new Point(x, y), piece);
+                }
+            }
+
+            return pieces;
         }
     }
 }

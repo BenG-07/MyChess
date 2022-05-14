@@ -26,6 +26,16 @@ namespace MyChess.Model
             this.Board.PlacePiece(new Knight(Color.white), new Point(7, 2));
             this.Board.PlacePiece(new Knight(Color.white), new Point(5, 2));
             var temp3 = this.Board.GetPossibleMoves(new Point(6, 1)); // 6, 2
+
+            this.Board.PlacePiece(new Queen(Color.white), new Point(4, 4));
+            var temp4 = this.Board.GetPossibleMoves(new Point(4, 4)); // 2,4,6 ; 2
+                                                                      // 3,4,5 ; 3
+                                                                      // 0 - 7 ; 4 / 4;4
+                                                                      // 3,4,5 ; 5
+                                                                      // 2,4,6 ; 6
+
+            var a = this.Board.IsInCheck(Color.white);
+            var b = this.Board.IsInCheck(Color.black);
         }
 
         private void PlaceFigures()

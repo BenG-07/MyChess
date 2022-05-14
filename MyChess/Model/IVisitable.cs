@@ -10,5 +10,7 @@ namespace MyChess.Model
     public interface IVisitable
     {
         void Accept(IVisitor visitor);
+
+        T Accept<T>(IVisitor<T> visitor);
     }
 }
