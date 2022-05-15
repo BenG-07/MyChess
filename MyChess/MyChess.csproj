@@ -55,10 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\ChessPieceTileVM.cs" />
     <Compile Include="Model\Turn\Turn.cs" />
     <Compile Include="ViewModel\ChessBackgroundGrid.cs" />
     <Compile Include="ViewModel\Command.cs" />
-    <Compile Include="ViewModel\ChessPieceTileVM.cs" />
     <Compile Include="ViewModel\Converter\TilePieceConverter.cs" />
     <Compile Include="ViewModel\SelectedPieceChangedEventArgs.cs" />
     <Compile Include="ViewModel\TurnManagementVM.cs" />

@@ -29,6 +29,11 @@ namespace MyChess.ViewModel.Converter
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+            {
+                return null;
+            }
+
             ChessPiece piece = ((ChessPieceTileVM)value).Piece;
 
             return piece.Accept(this);

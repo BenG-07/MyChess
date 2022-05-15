@@ -1,11 +1,25 @@
-﻿using MyChess.Model.ChessPieces;
-using System;
-using System.Collections.Generic;
+﻿// <copyright file="ChessPieceMovementPattern.cs" company="FHWN">
+//     Copyright (c) FHWN. All rights reserved.
+// </copyright>
+// <author>Weirer Benjamin</author>
+// <summary>A class that defines the movement pattern for all chess pieces.</summary>
 
 namespace MyChess.Model.ChessPieceMovers
 {
+    using MyChess.Model.ChessPieces;
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// A class that defines the movement pattern for all <see cref="ChessPiece"/> objects.
+    /// </summary>
     public abstract class ChessPieceMovementPattern : IVisitor<Func<ChessBoard, Point, List<Point>>>
     {
+        /// <summary>
+        /// The callback for a <see cref="IVisitable"/> object.
+        /// </summary>
+        /// <param name="pawn">The <see cref="Pawn"/> visiting.</param>
+        /// <returns>A function that takes a <see cref="ChessBoard"/> and a <see cref="Point"/> and returns all possible moves for the piece at said <see cref="Point"/> on the <see cref="ChessBoard"/>.</returns>
         public Func<ChessBoard, Point, List<Point>> Visit(Pawn pawn)
         {
             return (board, point) =>
@@ -30,6 +44,11 @@ namespace MyChess.Model.ChessPieceMovers
             };
         }
 
+        /// <summary>
+        /// The callback for a <see cref="IVisitable"/> object.
+        /// </summary>
+        /// <param name="rook">The <see cref="Rook"/> visiting.</param>
+        /// <returns>A function that takes a <see cref="ChessBoard"/> and a <see cref="Point"/> and returns all possible moves for the piece at said <see cref="Point"/> on the <see cref="ChessBoard"/>.</returns>
         public Func<ChessBoard, Point, List<Point>> Visit(Rook rook)
         {
             return (board, point) =>
@@ -68,6 +87,11 @@ namespace MyChess.Model.ChessPieceMovers
             };
         }
 
+        /// <summary>
+        /// The callback for a <see cref="IVisitable"/> object.
+        /// </summary>
+        /// <param name="bishop">The <see cref="Bishop"/> visiting.</param>
+        /// <returns>A function that takes a <see cref="ChessBoard"/> and a <see cref="Point"/> and returns all possible moves for the piece at said <see cref="Point"/> on the <see cref="ChessBoard"/>.</returns>
         public Func<ChessBoard, Point, List<Point>> Visit(Bishop bishop)
         {
             return (board, point) =>
@@ -106,6 +130,11 @@ namespace MyChess.Model.ChessPieceMovers
             };
         }
 
+        /// <summary>
+        /// The callback for a <see cref="IVisitable"/> object.
+        /// </summary>
+        /// <param name="knight">The <see cref="Knight"/> visiting.</param>
+        /// <returns>A function that takes a <see cref="ChessBoard"/> and a <see cref="Point"/> and returns all possible moves for the piece at said <see cref="Point"/> on the <see cref="ChessBoard"/>.</returns>
         public Func<ChessBoard, Point, List<Point>> Visit(Knight knight)
         {
             return (board, point) =>
@@ -133,6 +162,11 @@ namespace MyChess.Model.ChessPieceMovers
             };
         }
 
+        /// <summary>
+        /// The callback for a <see cref="IVisitable"/> object.
+        /// </summary>
+        /// <param name="queen">The <see cref="Queen"/> visiting.</param>
+        /// <returns>A function that takes a <see cref="ChessBoard"/> and a <see cref="Point"/> and returns all possible moves for the piece at said <see cref="Point"/> on the <see cref="ChessBoard"/>.</returns>
         public Func<ChessBoard, Point, List<Point>> Visit(Queen queen)
         {
             return (board, point) =>
@@ -199,6 +233,11 @@ namespace MyChess.Model.ChessPieceMovers
             };
         }
 
+        /// <summary>
+        /// The callback for a <see cref="IVisitable"/> object.
+        /// </summary>
+        /// <param name="king">The <see cref="King"/> visiting.</param>
+        /// <returns>A function that takes a <see cref="ChessBoard"/> and a <see cref="Point"/> and returns all possible moves for the piece at said <see cref="Point"/> on the <see cref="ChessBoard"/>.</returns>
         public Func<ChessBoard, Point, List<Point>> Visit(King king)
         {
             return (board, point) =>
@@ -241,6 +280,14 @@ namespace MyChess.Model.ChessPieceMovers
             };
         }
 
+        /// <summary>
+        /// Checks if the target <see cref="Point"/> is inside of the <see cref="ChessBoard"/> and if there is an enemy <see cref="ChessPiece"/> at this <see cref="Point"/>.
+        /// </summary>
+        /// <param name="board">The <see cref="ChessBoard"/>.</param>
+        /// <param name="target">The destination <see cref="Point"/> for the current move.</param>
+        /// <param name="color">The color of the <see cref="ChessPiece"/> that is moving.</param>
+        /// <param name="points">The list of possible moves for the <see cref="ChessPiece"/> in question.</param>
+        /// <returns>Whether the move is valid or not.</returns>
         protected virtual bool AddMoveIfIsNonAttack(ChessBoard board, Point target, Color color, List<Point> points)
         {
             if (board.IsInBounds(target) && !board.IsOccupied(target))
@@ -252,6 +299,14 @@ namespace MyChess.Model.ChessPieceMovers
             return false;
         }
 
+        /// <summary>
+        /// Checks if the target <see cref="Point"/> is inside of the <see cref="ChessBoard"/> and if there is an enemy <see cref="ChessPiece"/> at this <see cref="Point"/>.
+        /// </summary>
+        /// <param name="board">The <see cref="ChessBoard"/>.</param>
+        /// <param name="target">The destination <see cref="Point"/> for the current move.</param>
+        /// <param name="color">The color of the <see cref="ChessPiece"/> that is moving.</param>
+        /// <param name="points">The list of possible moves for the <see cref="ChessPiece"/> in question.</param>
+        /// <returns>Whether the move is valid or not.</returns>
         protected virtual bool AddMoveIfIsAttack(ChessBoard board, Point target, Color color, List<Point> points)
         {
             if (board.IsInBounds(target) && board.IsOccupied(target, color.Invert()))
@@ -263,6 +318,15 @@ namespace MyChess.Model.ChessPieceMovers
             return false;
         }
 
+        /// <summary>
+        /// Evaluates if the target field is also the last tile to move to (either enemy piece or out of bounds).
+        /// </summary>
+        /// <param name="board">The <see cref="ChessBoard"/>.</param>
+        /// <param name="start">The <see cref="Point"/> of the <see cref="ChessPiece"/> to move.</param>
+        /// <param name="target">The destination <see cref="Point"/> for the current move.</param>
+        /// <param name="color">The color of the <see cref="ChessPiece"/> that is moving.</param>
+        /// <param name="points">The list of possible moves for the <see cref="ChessPiece"/> in question.</param>
+        /// <returns>Whether it is the last possible move in the current direction.</returns>
         protected virtual bool IsNextMovePossible(ChessBoard board, Point start, Point target, Color color, List<Point> points)
         {
             if (board.IsInBounds(target) && !board.IsOccupied(target, color))

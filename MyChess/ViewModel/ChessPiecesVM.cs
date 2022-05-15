@@ -14,7 +14,7 @@ namespace MyChess.ViewModel
 {
     public class ChessPiecesVM : INotifyPropertyChanged
     {
-        public IEnumerable<ChessPieceTileVM> PieceVMs { get; set; }
+        public ChessPieceTileVM[] PieceVMs { get; set; }
 
         public int Width { get; set; }
 
@@ -77,11 +77,10 @@ namespace MyChess.ViewModel
             this.game = new ChessGame(this.Width, this.Height);
             this.game.Start();
 
-            ChessPieceTileVM[] tiles = new ChessPieceTileVM[32];
-            int index = 0;
+            ChessPieceTileVM[] tiles = new ChessPieceTileVM[this.Width * this.Height];
             foreach (var item in game.Board.GetPiecesAndPositions())
             {
-                tiles[index++] = new ChessPieceTileVM(this.FlipYAxis(item.Key), item.Value, this.SelectCommand);
+                tiles[item.Key.X * this.Height + item.Key.Y] = new ChessPieceTileVM(this.FlipYAxis(item.Key), item.Value, this.SelectCommand);
             }
 
             this.PieceVMs = tiles;
