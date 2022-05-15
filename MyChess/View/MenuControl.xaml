@@ -3,26 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MyChess.View"
+             xmlns:local="clr-namespace:MyChess"
+             xmlns:view="clr-namespace:MyChess.View"
+             xmlns:viewModel="clr-namespace:MyChess.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Canvas>
         <Canvas.Resources>
-
+            <viewModel:TurnManagementVM x:Key="turnHistory"/>
         </Canvas.Resources>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
-            <ItemsControl>
-                
-            </ItemsControl>
+            <Canvas DataContext="{StaticResource turnHistory}">
+                <ListView Width="200" Height="250" ItemsSource="{Binding Turns}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    Turn
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding TurnNumber}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    Move
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Turn}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    Recover
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding RecoverCommand}" CommandParameter="{Binding}">Recover</Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Canvas>
             <StackPanel Orientation="Horizontal">
-                <Button Width="100" Height="50" Background="Green">
+                <Button Width="100" Height="50" Margin="50,300,50,0" Background="Green">
 
                 </Button>
-                <Button Width="100" Height="50" Background="Red">
+                <Button Width="100" Height="50" Margin="50,300,50,0" Background="Red">
 
                 </Button>
             </StackPanel>

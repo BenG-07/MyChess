@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Turn\Turn.cs" />
+    <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="ViewModel\TurnManagementVM.cs" />
+    <Compile Include="ViewModel\TurnVM.cs" />
     <Compile Include="View\MenuControl.xaml.cs">
       <DependentUpon>MenuControl.xaml</DependentUpon>
     </Compile>
@@ -140,6 +144,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ViewModel\Converter\" />
     <Folder Include="View\Images\ChessPieces\" />
   </ItemGroup>
   <ItemGroup>
