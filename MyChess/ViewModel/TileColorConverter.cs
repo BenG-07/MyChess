@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace MyChess.ViewModel
 {
@@ -13,13 +14,27 @@ namespace MyChess.ViewModel
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch ((Color)value)
-            {
-                case Color.white:
-                    return "Images/Tiles/WhiteTile.png";
+            string whiteTileSource = "Images/Tiles/WhiteTile.png";
+            string blackTileSource = "Images/Tiles/BlackTile.png";
 
-                case Color.black:
-                    return "Images/Tiles/BlackTile.png";
+            switch ((Model.ChessPieces.Color)value)
+            {
+                case Model.ChessPieces.Color.white:
+                    if (targetType == typeof(ImageSource))
+                    {
+                        return (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + whiteTileSource);
+                    }
+
+                    return whiteTileSource;
+                    //targetType == typeof(String) ? (ImageSource)new ImageSourceConverter().ConvertFrom(whiteTileSource) : whiteTileSource;
+
+                case Model.ChessPieces.Color.black:
+                    if (targetType == typeof(ImageSource))
+                    {
+                        return (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + blackTileSource);
+                    }
+
+                    return blackTileSource;
 
                 default:
                     throw new NotImplementedException("Invalid Color!");

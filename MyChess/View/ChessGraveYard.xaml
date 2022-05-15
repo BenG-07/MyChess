@@ -5,10 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyChess"
              xmlns:view="clr-namespace:MyChess.View"
+             xmlns:viewModel="clr-namespace:MyChess.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <ItemsControl>
+    <Canvas>
+        <Canvas.Resources>
+            <viewModel:TilePositionConverter x:Key="tilePositionConverter"/>
+            <viewModel:TileColorConverter x:Key="tileColorConverter"/>
+            <viewModel:GraveYardGrid x:Key="graveYardGrid"/>
+        </Canvas.Resources>
+        <ItemsControl ItemsSource="{Binding Tiles}" DataContext="{StaticResource graveYardGrid}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas/>
@@ -16,11 +22,18 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Rectangle Width="40" Height="40" Fill="Green">
-                        
+                    <Rectangle Width="40" Height="40"  >
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding Color, Converter={StaticResource tileColorConverter}}" Opacity="0.5" />
+                        </Rectangle.Fill>
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <TranslateTransform X="{Binding Point.X, Converter={StaticResource tilePositionConverter}, ConverterParameter=40}" Y="{Binding Point.Y, Converter={StaticResource tilePositionConverter}, ConverterParameter=40}" />
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
                     </Rectangle>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>
+    </Canvas>
 </UserControl>

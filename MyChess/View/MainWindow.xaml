@@ -5,16 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyChess"
         xmlns:view="clr-namespace:MyChess.View"
+        xmlns:viewModel="clr-namespace:MyChess.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Background.png"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <view:ChessGraveYard Grid.Column="0"/>
-        <view:ChessBoard Grid.Column="1"/>
-        <view:ChessGraveYard Grid.Column="2"/>
+        <view:ChessGraveYard Grid.Column="0" Width="80" Margin="10"/>
+        <view:ChessBoard Grid.Column="1" Margin="0,10,0,10"/>
+        <view:ChessGraveYard Grid.Column="2" Width="80" Margin="10"/>
+        <view:MenuControl Grid.Column="3"/>
     </Grid>
 </Window>

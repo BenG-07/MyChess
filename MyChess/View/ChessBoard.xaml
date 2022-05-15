@@ -8,12 +8,12 @@
              xmlns:viewModel="clr-namespace:MyChess.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.Resources>
+    <Canvas>
+        <Canvas.Resources>
             <viewModel:TilePositionConverter x:Key="tilePositionConverter"/>
             <viewModel:TileColorConverter x:Key="tileColorConverter"/>
             <viewModel:ChessGrid x:Key="chessGrid"/>
-        </Grid.Resources>
+        </Canvas.Resources>
         <ItemsControl ItemsSource="{Binding Tiles}" DataContext="{StaticResource chessGrid}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -33,5 +33,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>
+    </Canvas>
 </UserControl>
