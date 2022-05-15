@@ -8,7 +8,8 @@
              xmlns:viewModel="clr-namespace:MyChess.ViewModel"
              xmlns:converter="clr-namespace:MyChess.ViewModel.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
     <Canvas>
         <Canvas.Resources>
             <converter:TilePositionConverter x:Key="tilePositionConverter"/>
@@ -19,7 +20,7 @@
         </Canvas.Resources>
         <StackPanel>
             <!-- BackgroundGrid -->
-            <ItemsControl ItemsSource="{Binding Tiles}" DataContext="{StaticResource chessBackgroundGrid}">
+            <ItemsControl ItemsSource="{Binding Tiles}" DataContext="{StaticResource chessBackgroundGrid}" x:Name="BackgroundGridItemControl">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas/>
@@ -36,12 +37,17 @@
                                     <TranslateTransform X="{Binding Point.X, Converter={StaticResource tilePositionConverter}, ConverterParameter=40}" Y="{Binding Point.Y, Converter={StaticResource tilePositionConverter}, ConverterParameter=40}" />
                                 </TransformGroup>
                             </Rectangle.RenderTransform>
+                            <!--<Rectangle.Triggers>
+                                <DataTrigger Binding="{Binding }">
+                                    
+                                </DataTrigger>
+                            </Rectangle.Triggers>-->
                         </Rectangle>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             <!-- Actual Pieces -->
-            <ItemsControl ItemsSource="{Binding PieceVMs}" DataContext="{StaticResource chessPiecesGrid}">
+            <ItemsControl ItemsSource="{Binding PieceVMs}" DataContext="{StaticResource chessPiecesGrid}" x:Name="ChessPiecesItemControl">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas/>
@@ -49,8 +55,8 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Width="40" Height="40" Command="{Binding SelectCommand}" CommandParameter="{Binding}" Opacity="0.3" Background="Red">
-                            <Image Source="{Binding Path=. , Converter={StaticResource tileColorConverter}}" />
+                        <Button Width="40" Height="40" Command="{Binding SelectCommand}" CommandParameter="{Binding}" Background="Transparent">
+                            <Image Source="{Binding Path=. , Converter={StaticResource tilePieceConverter}}" />
                             <Button.RenderTransform>
                                 <TransformGroup>
                                     <TranslateTransform X="{Binding Point.X, Converter={StaticResource tilePositionConverter}, ConverterParameter=40}" Y="{Binding Point.Y, Converter={StaticResource tilePositionConverter}, ConverterParameter=40}" />

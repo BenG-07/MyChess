@@ -2,6 +2,7 @@
 {
     using MyChess.Model;
     using MyChess.Model.ChessPieces;
+    using System;
 
     public class Tile
     {

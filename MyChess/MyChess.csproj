@@ -60,6 +60,7 @@
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\ChessPieceTileVM.cs" />
     <Compile Include="ViewModel\Converter\TilePieceConverter.cs" />
+    <Compile Include="ViewModel\SelectedPieceChangedEventArgs.cs" />
     <Compile Include="ViewModel\TurnManagementVM.cs" />
     <Compile Include="ViewModel\TurnVM.cs" />
     <Compile Include="View\MenuControl.xaml.cs">

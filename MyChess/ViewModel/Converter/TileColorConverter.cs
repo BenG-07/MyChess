@@ -17,25 +17,13 @@ namespace MyChess.ViewModel.Converter
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
             switch ((Model.ChessPieces.Color)value)
             {
                 case Model.ChessPieces.Color.white:
-                    if (targetType == typeof(ImageSource))
-                    {
-                        return (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whiteTileSource);
-                    }
-
-                    return this.whiteTileSource;
-                    //targetType == typeof(String) ? (ImageSource)new ImageSourceConverter().ConvertFrom(this.whiteTileSource) : this.whiteTileSource;
+                    return (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whiteTileSource);
 
                 case Model.ChessPieces.Color.black:
-                    if (targetType == typeof(ImageSource))
-                    {
-                        return (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackTileSource);
-                    }
-
-                    return this.blackTileSource;
+                    return (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackTileSource);
 
                 default:
                     throw new NotImplementedException("Invalid Color!");

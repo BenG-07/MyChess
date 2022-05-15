@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using MyChess.Model;
 using MyChess.Model.ChessPieces;
@@ -25,6 +26,8 @@ namespace MyChess.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event EventHandler<SelectedPieceChangedEventArgs> SelectedPieceChanged;
+
         public ChessPiece SelectedPiece
         {
             get { return this.selectedPiece; }
@@ -43,19 +46,33 @@ namespace MyChess.ViewModel
             {
                 if (obj is ChessPieceTileVM vm)
                 {
-                    if (this.SelectedPiece.Equals(vm.Piece))
+                    if (this.SelectedPiece != null && this.SelectedPiece == vm.Piece)
                     {
                         this.SelectedPiece = null;
                         this.FireOnPropertyChanged();
                     }
 
                     this.SelectedPiece = vm.Piece;
+                    this.FireOnPropertyChanged();
+
+                    this.FireOnSelectedPieceChanged(this.game.Board.GetPossibleMoves(vm.Point));
                 }
             });
 
             var args = System.Environment.GetCommandLineArgs();
-            this.Width = 8;
-            this.Height = 10;
+            int width = 8, height = 8;
+            if (args.Length >= 2 && !int.TryParse(args[1], out width))
+            {
+                width = 8;
+            }
+
+            if (args.Length >= 3 && !int.TryParse(args[1], out height))
+            {
+                height = 8;
+            }
+
+            this.Width = width;
+            this.Height = height;
 
             this.game = new ChessGame(this.Width, this.Height);
             this.game.Start();
@@ -64,7 +81,7 @@ namespace MyChess.ViewModel
             int index = 0;
             foreach (var item in game.Board.GetPiecesAndPositions())
             {
-                tiles[index++] = new ChessPieceTileVM(item.Key, item.Value, this.SelectCommand);
+                tiles[index++] = new ChessPieceTileVM(this.FlipYAxis(item.Key), item.Value, this.SelectCommand);
             }
 
             this.PieceVMs = tiles;
@@ -72,12 +89,22 @@ namespace MyChess.ViewModel
 
         private void PropertyChangedCB(object sender, PropertyChangedEventArgs e)
         {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(e.PropertyName));
+            this.PropertyChanged?.Invoke(sender, e);
         }
 
         protected virtual void FireOnPropertyChanged([CallerMemberName] string propName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+
+        protected virtual void FireOnSelectedPieceChanged(List<Point> possibleTiles)
+        {
+            this.SelectedPieceChanged?.Invoke(this, new SelectedPieceChangedEventArgs(possibleTiles));
+        }
+
+        private Point FlipYAxis(Point point)
+        {
+            return new Point(point.X, this.Height - point.Y - 1);
         }
     }
 }

@@ -12,16 +12,18 @@ namespace MyChess.Model.ChessPieceMovers
             {
                 List<Point> possibleMoves = new List<Point>();
 
+                int moveOnYAxis = pawn.Color == Color.white ? 1 : -1;
+
                 // Go forward - cant attack
-                Point target = point + new Point(0, 1);
+                Point target = point + new Point(0, moveOnYAxis);
                 this.AddMoveIfIsNonAttack(board, target, pawn.Color, possibleMoves);
 
                 // Go diagonal left - can only move if enemy is there
-                target = point + new Point(-1, 1);
+                target = point + new Point(-1, moveOnYAxis);
                 this.AddMoveIfIsAttack(board, target, pawn.Color, possibleMoves);
 
                 // Go diagonal right - can only move if enemy is there
-                target = point + new Point(1, 1);
+                target = point + new Point(1, moveOnYAxis);
                 this.AddMoveIfIsAttack(board, target, pawn.Color, possibleMoves);
 
                 return possibleMoves;

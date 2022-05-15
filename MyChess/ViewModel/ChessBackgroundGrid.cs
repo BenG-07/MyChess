@@ -16,11 +16,24 @@ namespace MyChess.ViewModel
 
         public int Height { get; set; }
 
+        private List<Tile> highlightedTiles;
+
         public ChessBackgroundGrid()
         {
             var args = System.Environment.GetCommandLineArgs();
-            this.Width = 8;
-            this.Height = 10;
+            int width = 8, height = 8;
+            if (args.Length >= 2 && !int.TryParse(args[1], out width))
+            {
+                width = 8;
+            }
+
+            if (args.Length >= 3 && !int.TryParse(args[1], out height))
+            {
+                height = 8;
+            }
+
+            this.Width = width;
+            this.Height = height;
 
             Tile[] tiles = new Tile[this.Width * this.Height];
             int index = 0;
@@ -33,6 +46,29 @@ namespace MyChess.ViewModel
             }
 
             this.Tiles = tiles;
+            this.highlightedTiles = new List<Tile>();
+        }
+
+        public void SelectedPieceChangedCB(object sender, SelectedPieceChangedEventArgs e)
+        {
+            foreach (var tile in this.highlightedTiles)
+            {
+                tile.Color = tile.Point.X % 2 == tile.Point.Y % 2 ? Color.white : Color.black;
+            }
+            highlightedTiles.Clear();
+
+            foreach (var item in e.PossibleTiles)
+            {
+                foreach (var tile in this.Tiles)
+                {
+                    if (tile.Point == item)
+                    {
+                        highlightedTiles.Add(tile);
+                    }
+                }
+            }
+
+            // Hier müsste die farbe des tiles geändet werden...
         }
     }
 }

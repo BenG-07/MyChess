@@ -73,6 +73,8 @@ namespace MyChess.Model
         {
             return new Point(point.X, point.Y);
         }
+        public static bool operator ==(Point a, Point b) => a.X == b.X && a.Y == b.Y;
+        public static bool operator !=(Point a, Point b) => a.X != b.X || a.Y != b.Y;
 
         /// <summary>
         /// Tries to parse a string to a point object.

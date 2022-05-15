@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyChess.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace MyChess.View
         public ChessBoard()
         {
             InitializeComponent();
+            ChessPiecesVM chessPiecesVM = (ChessPiecesVM)ChessPiecesItemControl.DataContext;
+            ChessBackgroundGrid backgroundGrid = (ChessBackgroundGrid)BackgroundGridItemControl.DataContext;
+
+            chessPiecesVM.SelectedPieceChanged += backgroundGrid.SelectedPieceChangedCB;
         }
     }
 }

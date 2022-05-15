@@ -1,4 +1,5 @@
 ﻿using MyChess.Model.ChessPieces;
+using MyChess.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +11,7 @@ using System.Windows.Media;
 
 namespace MyChess.ViewModel.Converter
 {
-    public class TilePieceConverter : IValueConverter, Model.IVisitor<ImageSource>
+    public class TilePieceConverter : IValueConverter, IVisitor<ImageSource>
     {
         private readonly string whitePawn = "Images/ChessPieces/WhitePawn.png";
         private readonly string whiteRook = "Images/ChessPieces/WhiteRook.png";
@@ -28,7 +29,7 @@ namespace MyChess.ViewModel.Converter
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ChessPiece piece = (ChessPiece)value;
+            ChessPiece piece = ((ChessPieceTileVM)value).Piece;
 
             return piece.Accept(this);
         }
@@ -38,33 +39,33 @@ namespace MyChess.ViewModel.Converter
             throw new NotImplementedException();
         }
 
-        ImageSource Model.IVisitor<ImageSource>.Visit(Pawn pawn) => 
+        ImageSource IVisitor<ImageSource>.Visit(Pawn pawn) => 
             pawn.Color == Model.ChessPieces.Color.white ? 
             (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whitePawn) 
             : (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackPawn);
         
 
-        ImageSource Model.IVisitor<ImageSource>.Visit(Rook rook) =>
+        ImageSource IVisitor<ImageSource>.Visit(Rook rook) =>
             rook.Color == Model.ChessPieces.Color.white ?
             (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whiteRook)
             : (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackRook);
 
-        ImageSource Model.IVisitor<ImageSource>.Visit(Bishop bishop) =>
+        ImageSource IVisitor<ImageSource>.Visit(Bishop bishop) =>
             bishop.Color == Model.ChessPieces.Color.white ?
             (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whiteBishop)
             : (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackBishop);
 
-        ImageSource Model.IVisitor<ImageSource>.Visit(Knight knight) =>
+        ImageSource IVisitor<ImageSource>.Visit(Knight knight) =>
             knight.Color == Model.ChessPieces.Color.white ?
             (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whiteKnight)
             : (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackKnight);
 
-        ImageSource Model.IVisitor<ImageSource>.Visit(Queen queen) =>
+        ImageSource IVisitor<ImageSource>.Visit(Queen queen) =>
             queen.Color == Model.ChessPieces.Color.white ?
             (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whiteQueen)
             : (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackQueen);
 
-        ImageSource Model.IVisitor<ImageSource>.Visit(King king) =>
+        ImageSource IVisitor<ImageSource>.Visit(King king) =>
             king.Color == Model.ChessPieces.Color.white ?
             (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.whiteKing)
             : (ImageSource)new ImageSourceConverter().ConvertFrom("../../View/" + this.blackKing);
