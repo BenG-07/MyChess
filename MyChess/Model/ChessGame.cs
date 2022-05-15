@@ -23,7 +23,7 @@ namespace MyChess.Model
         {
             this.PlaceFigures();
 
-            testMethod();
+            //testMethod();
         }
 
         private void PlaceFigures()

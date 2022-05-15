@@ -1,14 +1,14 @@
-﻿using System;
+﻿using MyChess.Model;
+using MyChess.Model.ChessPieces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MyChess.Model;
-using MyChess.Model.ChessPieces;
 
 namespace MyChess.ViewModel
 {
-    public class ChessGrid
+    class ChessBackgroundGrid
     {
         public IEnumerable<Tile> Tiles { get; set; }
 
@@ -16,14 +16,15 @@ namespace MyChess.ViewModel
 
         public int Height { get; set; }
 
-        public ChessGrid()
+        public ChessBackgroundGrid()
         {
             var args = System.Environment.GetCommandLineArgs();
             this.Width = 8;
             this.Height = 10;
-            Tile[] tiles= new Tile[this.Width * this.Height];
+
+            Tile[] tiles = new Tile[this.Width * this.Height];
             int index = 0;
-            for (int y = 0; y < this.Height; y++)
+            for (int y = this.Height - 1; y >= 0; y--)
             {
                 for (int x = 0; x < this.Width; x++)
                 {
@@ -31,7 +32,7 @@ namespace MyChess.ViewModel
                 }
             }
 
-            Tiles = tiles;
+            this.Tiles = tiles;
         }
     }
 }

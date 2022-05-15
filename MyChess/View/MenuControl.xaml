@@ -56,12 +56,8 @@
                 </ListView>
             </Canvas>
             <StackPanel Orientation="Horizontal">
-                <Button Width="100" Height="50" Margin="50,300,50,0" Background="Green">
-
-                </Button>
-                <Button Width="100" Height="50" Margin="50,300,50,0" Background="Red">
-
-                </Button>
+                <Button Width="70" Height="50" Margin="15,265,15,0" Background="Green">Save</Button>
+                <Button Width="70" Height="50" Margin="15,265,15,0" Background="Red">Load</Button>
             </StackPanel>
         </Grid>
     </Canvas>

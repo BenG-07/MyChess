@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace MyChess.ViewModel
+namespace MyChess.ViewModel.Converter
 {
     public class TilePositionConverter : IValueConverter
     {

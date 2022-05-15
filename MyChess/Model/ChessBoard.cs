@@ -198,6 +198,25 @@ namespace MyChess.Model
 
             return pieces;
         }
+        public Dictionary<Point, ChessPiece> GetPiecesAndPositions()
+        {
+            Dictionary<Point, ChessPiece> pieces = new Dictionary<Point, ChessPiece>();
+            for (int x = 0; x < this.BoardWidth; x++)
+            {
+                for (int y = 0; y < this.BoardHeight; y++)
+                {
+                    ChessPiece piece = this.board[x, y];
+                    if (piece == null)
+                    {
+                        continue;
+                    }
+
+                    pieces.Add(new Point(x, y), piece);
+                }
+            }
+
+            return pieces;
+        }
 
         public List<Point> GetPiecesPositions(Color color)
         {

@@ -56,7 +56,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Turn\Turn.cs" />
+    <Compile Include="ViewModel\ChessBackgroundGrid.cs" />
     <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="ViewModel\ChessPieceTileVM.cs" />
+    <Compile Include="ViewModel\Converter\TilePieceConverter.cs" />
     <Compile Include="ViewModel\TurnManagementVM.cs" />
     <Compile Include="ViewModel\TurnVM.cs" />
     <Compile Include="View\MenuControl.xaml.cs">
@@ -79,9 +82,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\GraveYardGrid.cs" />
-    <Compile Include="ViewModel\TileColorConverter.cs" />
-    <Compile Include="ViewModel\TilePositionConverter.cs" />
-    <Compile Include="ViewModel\ChessGrid.cs" />
+    <Compile Include="ViewModel\Converter\TileColorConverter.cs" />
+    <Compile Include="ViewModel\Converter\TilePositionConverter.cs" />
+    <Compile Include="ViewModel\ChessPiecesVM.cs" />
     <Compile Include="ViewModel\Tile.cs" />
     <Compile Include="View\ChessBoard.xaml.cs">
       <DependentUpon>ChessBoard.xaml</DependentUpon>
@@ -143,10 +146,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Converter\" />
-    <Folder Include="View\Images\ChessPieces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="View\Images\Background.png" />
     <Resource Include="View\Images\MainMenu.png" />
@@ -162,6 +162,14 @@
   <ItemGroup>
     <Resource Include="View\Images\Tiles\BlackTile.png" />
     <Resource Include="View\Images\Tiles\WhiteTile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\ChessPieces\WhiteBishop.png" />
+    <Resource Include="View\Images\ChessPieces\WhiteKing.png" />
+    <Resource Include="View\Images\ChessPieces\WhiteKnight.png" />
+    <Resource Include="View\Images\ChessPieces\WhitePawn.png" />
+    <Resource Include="View\Images\ChessPieces\WhiteQueen.png" />
+    <Resource Include="View\Images\ChessPieces\WhiteRook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
