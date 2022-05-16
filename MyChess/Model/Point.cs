@@ -66,14 +66,46 @@ namespace MyChess.Model
             }
         }
 
+        /// <summary>
+        /// Adds two <see cref="Point"/>s together.
+        /// </summary>
+        /// <param name="a">The first <see cref="Point"/>.</param>
+        /// <param name="b">The second <see cref="Point"/>.</param>
+        /// <returns>The resulting <see cref="Point"/> after adding all axis together.</returns>
         public static Point operator +(Point a, Point b) => new Point(a.X + b.X, a.Y + b.Y);
+
+        /// <summary>
+        /// Subtracts <see cref="Point"/> from another.
+        /// </summary>
+        /// <param name="a">The reference <see cref="Point"/>.</param>
+        /// <param name="b">The <see cref="Point"/> to subtract.</param>
+        /// <returns>The resulting <see cref="Point"/> after subtracting the second from the first.</returns>
         public static Point operator -(Point a, Point b) => new Point(a.X - b.X, a.Y - b.Y);
 
+        /// <summary>
+        /// Creates a copy of a <see cref="Point"/> reference.
+        /// </summary>
+        /// <param name="point">The reference.</param>
+        /// <returns>A new instance of a <see cref="Point"/> with the same values as the reference.</returns>
         public static Point CopyOf(Point point)
         {
             return new Point(point.X, point.Y);
         }
+
+        /// <summary>
+        /// Compares two <see cref="Point"/>s.
+        /// </summary>
+        /// <param name="a">The first <see cref="Point"/>.</param>
+        /// <param name="b">The second <see cref="Point"/>.</param>
+        /// <returns>Whether the two <see cref="Point"/>s are at the same location or not.</returns>
         public static bool operator ==(Point a, Point b) => a.X == b.X && a.Y == b.Y;
+
+        /// <summary>
+        /// Compares two <see cref="Point"/>s.
+        /// </summary>
+        /// <param name="a">The first <see cref="Point"/>.</param>
+        /// <param name="b">The second <see cref="Point"/>.</param>
+        /// <returns>Whether the two <see cref="Point"/>s are at different locations or not.</returns>
         public static bool operator !=(Point a, Point b) => a.X != b.X || a.Y != b.Y;
 
         /// <summary>

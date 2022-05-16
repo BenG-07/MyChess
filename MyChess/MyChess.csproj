@@ -119,11 +119,14 @@
     <Compile Include="Model\ChessPieces\Knight.cs" />
     <Compile Include="Model\ChessPieces\Pawn.cs" />
     <Compile Include="Model\ChessPieceFinders\PieceFinder.cs" />
-    <Compile Include="Model\Point.cs" />
+    <Compile Include="Model\Point.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Model\ChessPieces\Queen.cs" />
     <Compile Include="Model\ChessPieces\Rook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

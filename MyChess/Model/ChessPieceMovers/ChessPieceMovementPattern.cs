@@ -6,9 +6,9 @@
 
 namespace MyChess.Model.ChessPieceMovers
 {
-    using MyChess.Model.ChessPieces;
     using System;
     using System.Collections.Generic;
+    using MyChess.Model.ChessPieces;
 
     /// <summary>
     /// A class that defines the movement pattern for all <see cref="ChessPiece"/> objects.
@@ -60,28 +60,32 @@ namespace MyChess.Model.ChessPieceMovers
                 do
                 {
                     target += new Point(1, 0);
-                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 // Left
                 target = point;
                 do
                 {
                     target += new Point(-1, 0);
-                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 // UP
                 target = point;
                 do
                 {
                     target += new Point(0, 1);
-                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 // Down
                 target = point;
                 do
                 {
                     target += new Point(0, -1);
-                } while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, rook.Color, possibleMoves));
 
                 return possibleMoves;
             };
@@ -103,28 +107,32 @@ namespace MyChess.Model.ChessPieceMovers
                 do
                 {
                     target += new Point(1, 1);
-                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 // Left down
                 target = point;
                 do
                 {
                     target += new Point(-1, -1);
-                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 // UP left
                 target = point;
                 do
                 {
                     target += new Point(-1, 1);
-                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 // Down right
                 target = point;
                 do
                 {
                     target += new Point(1, -1);
-                } while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, bishop.Color, possibleMoves));
 
                 return possibleMoves;
             };
@@ -178,56 +186,64 @@ namespace MyChess.Model.ChessPieceMovers
                 do
                 {
                     target += new Point(1, 0);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Left
                 target = point;
                 do
                 {
                     target += new Point(-1, 0);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // UP
                 target = point;
                 do
                 {
                     target += new Point(0, 1);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Down
                 target = point;
                 do
                 {
                     target += new Point(0, -1);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Right up
                 target = point;
                 do
                 {
                     target += new Point(1, 1);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Left down
                 target = point;
                 do
                 {
                     target += new Point(-1, -1);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // UP left
                 target = point;
                 do
                 {
                     target += new Point(-1, 1);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 // Down right
                 target = point;
                 do
                 {
                     target += new Point(1, -1);
-                } while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
+                } 
+                while (this.IsNextMovePossible(board, point, target, queen.Color, possibleMoves));
 
                 return possibleMoves;
             };

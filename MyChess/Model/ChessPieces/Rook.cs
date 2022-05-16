@@ -1,5 +1,14 @@
-﻿namespace MyChess.Model.ChessPieces
+﻿// <copyright file="Rook.cs" company="FHWN">
+//     Copyright (c) FHWN. All rights reserved.
+// </copyright>
+// <author>Weirer Benjamin</author>
+// <summary>Represents a rook in a chess game.</summary>
+
+namespace MyChess.Model.ChessPieces
 {
+    /// <summary>
+    /// A class that represents a <see cref="Rook"/> in a <see cref="ChessGame"/>.
+    /// </summary>
     public class Rook : ChessPiece
     {
         /// <summary>
